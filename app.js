@@ -1,8 +1,14 @@
 const morgan = require('morgan');
 const express = require('express');
-const routes = require('./routes/index')
+const routes = require('./routes/index');
+const { db } = require('./models');
 
 const app = express();
+
+db.authenticate().then(() => {
+  console.log('connected to the database')
+})
+
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
